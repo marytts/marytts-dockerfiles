@@ -1,6 +1,4 @@
-FROM openjdk:7
-RUN apt-get -y update && apt-get install -y \
-  maven
+FROM maven
 RUN wget https://github.com/marytts/marytts/archive/v5.2.zip && \
   unzip v5.2.zip && \
   rm -f v5.2.zip && \

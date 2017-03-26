@@ -8,3 +8,4 @@ RUN wget https://github.com/marytts/marytts/archive/v5.2.zip && \
 RUN cd marytts && \
   mvn install
 CMD /marytts/target/marytts-5.2/bin/marytts-server
+EXPOSE 59125

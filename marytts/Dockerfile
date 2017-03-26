@@ -1,8 +1,10 @@
 FROM openjdk:7
 RUN apt-get -y update && apt-get install -y \
   maven
-RUN wget https://github.com/marytts/marytts/archive/v5.2.zip
-RUN unzip v5.2.zip && \
-  cd marytts-5.2 && \
+RUN wget https://github.com/marytts/marytts/archive/v5.2.zip && \
+  unzip v5.2.zip && \
+  rm -f v5.2.zip && \
+  mv marytts-5.2 marytts
+RUN cd marytts && \
   mvn install
-CMD cd marytts-5.2 && target/marytts-5.2/bin/marytts-server
+CMD /marytts/target/marytts-5.2/bin/marytts-server

@@ -1,4 +1,4 @@
-FROM marytts:5.2
+FROM psibre/marytts:5.2
 RUN apt-get -y update && apt-get -y install \
   bc \
   g++ \

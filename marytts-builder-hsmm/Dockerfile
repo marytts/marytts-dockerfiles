@@ -1,4 +1,4 @@
-FROM marytts-builder-hsmm-prep
+FROM psibre/marytts-builder-hsmm-prep:5.2
 ARG HTKUSER
 ARG HTKPASSWORD
 RUN wget http://$HTKUSER:$HTKPASSWORD@htk.eng.cam.ac.uk/ftp/software/HTK-3.4.1.tar.gz && \

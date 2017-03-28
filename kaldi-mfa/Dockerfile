@@ -38,6 +38,7 @@ RUN \
   mv Montreal-Forced-Aligner-0.8.1 mfa
 RUN \
   cd mfa && \
+  perl -i -pe 's/=$//' requirements.txt && \
   python3 thirdparty/kaldibinaries.py /kaldi && \
   pip3 install -r requirements.txt && \
   freezing/freeze.sh

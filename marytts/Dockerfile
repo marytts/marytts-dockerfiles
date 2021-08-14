@@ -1,4 +1,4 @@
-FROM maven
+FROM maven:3.8.1-openjdk-8
 RUN wget https://github.com/marytts/marytts/archive/v5.2.zip && \
   unzip v5.2.zip && \
   rm -f v5.2.zip && \

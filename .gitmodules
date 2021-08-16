@@ -1,3 +1,6 @@
 [submodule "marytts-hsb-meta"]
 	path = marytts-hsb-meta
 	url = git@github.com:Sorbisches-Institut/marytts-hsb-meta.git
+[submodule "marytts-dsb-meta"]
+	path = marytts-dsb-meta
+	url = git@github.com:Sorbisches-Institut/marytts-dsb-meta.git

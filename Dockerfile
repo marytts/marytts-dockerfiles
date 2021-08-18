@@ -21,7 +21,7 @@ WORKDIR /work/marytts-dsb-meta/marytts-lang-dsb
 RUN ./gradlew build
 
 WORKDIR /work/marytts-dsb-meta/voice-dsb-poc
-RUN ../marytts-lang-dsb/gradlew assemble \
+RUN ../marytts-lang-dsb/gradlew build \
   && unzip build/distributions/*.zip
 
 WORKDIR /work

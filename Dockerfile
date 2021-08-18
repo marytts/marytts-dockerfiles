@@ -24,6 +24,9 @@ WORKDIR /work/marytts-dsb-meta/voice-dsb-poc
 RUN ../marytts-lang-dsb/gradlew assemble \
   && unzip build/distributions/*.zip
 
+WORKDIR /work
+RUN wget https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar
+
 FROM psibre/marytts:5.2
 COPY --from=builder \
   /work/marytts-hsb-meta/marytts-lang-hsb/build/libs/*.jar \
@@ -32,4 +35,5 @@ COPY --from=builder \
   /work/marytts-dsb-meta/marytts-lang-dsb/build/libs/*.jar \
   /work/marytts-dsb-meta/marytts-lang-dsb/marytts-lexicon-dsb/build/libs/*.jar \
   /work/marytts-dsb-meta/voice-dsb-poc/lib/ \
+  /work/commons-csv-1.9.0.jar \
   /marytts/lib/

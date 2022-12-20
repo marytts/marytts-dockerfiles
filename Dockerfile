@@ -14,6 +14,7 @@ WORKDIR /marytts
 COPY --from=builder /work/marytts/build/install/marytts .
 
 EXPOSE 59125/tcp
+ENV JAVA_OPTS="-Dlog4j.logger.marytts=INFO,stderr -Dsocket.addr=0.0.0.0"
 ENTRYPOINT /marytts/bin/marytts-server
 
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-dsb/0.1.0/marytts-lexicon-dsb-0.1.0.jar lib/

@@ -1,39 +1,27 @@
-FROM openjdk:8-jdk AS builder
+FROM openjdk:8-slim AS builder
 
-RUN export DEBIAN_FRONTEND=noninteractive \
-  && apt-get -qq update \
-  && apt-get -qq install --no-install-recommends \
-    sox \
-    speech-tools
+WORKDIR /work/marytts
+ADD https://github.com/marytts/marytts/archive/master.tar.gz marytts.tar.gz
 
-COPY marytts-hsb-meta/ /work/marytts-hsb-meta/
+RUN tar -xzf marytts.tar.gz --strip-components 1
+RUN ./gradlew installDist --parallel
 
-WORKDIR /work/marytts-hsb-meta/marytts-lang-hsb
-RUN ./gradlew build
+FROM alpine
 
-WORKDIR /work/marytts-hsb-meta/voice-hsb-poc
-RUN ../marytts-lang-hsb/gradlew build \
-  && unzip build/distributions/*.zip
+RUN apk add --no-cache openjdk8
 
-COPY marytts-dsb-meta/ /work/marytts-dsb-meta/
+WORKDIR /marytts
+COPY --from=builder /work/marytts/build/install/marytts .
 
-WORKDIR /work/marytts-dsb-meta/marytts-lang-dsb
-RUN ./gradlew build
+EXPOSE 59125/tcp
+ENTRYPOINT /marytts/bin/marytts-server
 
-WORKDIR /work/marytts-dsb-meta/voice-dsb-poc
-RUN ../marytts-lang-dsb/gradlew build \
-  && unzip build/distributions/*.zip
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-dsb/0.1.0/marytts-lexicon-dsb-0.1.0.jar lib/
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-dsb/0.1.0/marytts-lang-dsb-0.1.0.jar lib/
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-hsb/0.1.0/marytts-lexicon-hsb-0.1.0.jar lib/
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-hsb/0.1.0/marytts-lang-hsb-0.1.0.jar lib/
+ADD https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar lib/
 
-WORKDIR /work
-RUN wget https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar
-
-FROM psibre/marytts:5.2
-COPY --from=builder \
-  /work/marytts-hsb-meta/marytts-lang-hsb/build/libs/*.jar \
-  /work/marytts-hsb-meta/marytts-lang-hsb/marytts-lexicon-hsb/build/libs/*.jar \
-  /work/marytts-hsb-meta/voice-hsb-poc/lib/ \
-  /work/marytts-dsb-meta/marytts-lang-dsb/build/libs/*.jar \
-  /work/marytts-dsb-meta/marytts-lang-dsb/marytts-lexicon-dsb/build/libs/*.jar \
-  /work/marytts-dsb-meta/voice-dsb-poc/lib/ \
-  /work/commons-csv-1.9.0.jar \
-  /marytts/lib/
+COPY voice-serbski-institut-dsb-juro-0.1.0-SNAPSHOT-legacy.zip \
+    voice-serbski-institut-hsb-matej-0.1.0-SNAPSHOT-legacy.zip download/
+RUN find download -name voice-serbski-institut-\*.zip -exec unzip {} \;

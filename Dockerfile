@@ -14,7 +14,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq install \
       unzip \
     && find download/ -name voice-serbski-institut-\*.zip \
-      -exec unzip {} \;
+      -exec unzip {} \; \
+      -delete
 
 FROM alpine
 

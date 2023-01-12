@@ -19,7 +19,9 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 FROM alpine
 
-RUN apk add --no-cache openjdk8
+RUN apk add --no-cache \
+    curl \
+    openjdk8
 
 WORKDIR /marytts
 COPY --from=builder /work/marytts/build/install/marytts .
@@ -33,3 +35,5 @@ ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-dsb/0.1.0/marytts-l
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-hsb/0.1.0/marytts-lexicon-hsb-0.1.0.jar lib/
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-hsb/0.1.0/marytts-lang-hsb-0.1.0.jar lib/
 ADD https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar lib/
+
+HEALTHCHECK CMD curl --fail http://localhost:59125/version

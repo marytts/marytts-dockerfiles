@@ -9,8 +9,12 @@ RUN ./gradlew installDist --parallel
 WORKDIR /work/marytts/build/install/marytts
 COPY voice-serbski-institut-dsb-juro-0.1.0-SNAPSHOT-legacy.zip \
     voice-serbski-institut-hsb-matej-0.1.0-SNAPSHOT-legacy.zip download/
-RUN find download/ -name voice-serbski-institut-\*.zip \
-    -exec unzip {} \;
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -qq update \
+    && apt-get -qq install \
+      unzip \
+    && find download/ -name voice-serbski-institut-\*.zip \
+      -exec unzip {} \;
 
 FROM alpine
 

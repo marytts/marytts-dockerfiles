@@ -4,14 +4,6 @@
 
 Docker must be installed.
 
-Ensure that this repository is cloned with all nested submodules:
-
-    git clone --recurse-submodules git@github.com:Sorbisches-Institut/marytts-docker.git
-
-Alternatively if already cloned, ensure that all nested submodules are initalized and up-to-date:
-
-    git submodule update --recursive --init
-
 ## Building the image
 
 Run

@@ -7,8 +7,10 @@ RUN tar -xzf marytts.tar.gz --strip-components 1
 RUN ./gradlew installDist --parallel
 
 WORKDIR /work/marytts/build/install/marytts
-COPY voice-serbski-institut-dsb-juro-0.1.0-SNAPSHOT-legacy.zip \
-    voice-serbski-institut-hsb-matej-0.1.0-SNAPSHOT-legacy.zip download/
+ADD https://github.com/marytts/voice-serbski-institut-dsb-juro/releases/download/v0.1.0-beta1/voice-serbski-institut-dsb-juro-0.1.0-beta1-legacy.zip \
+    download/
+ADD https://github.com/marytts/voice-serbski-institut-hsb-matej/releases/download/v0.1.0-beta1/voice-serbski-institut-hsb-matej-0.1.0-beta1-legacy.zip \
+    download/
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get -qq update \
     && apt-get -qq install \

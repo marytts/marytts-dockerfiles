@@ -1,7 +1,8 @@
 FROM openjdk:8-slim AS builder
 
 WORKDIR /work/marytts
-ADD https://github.com/marytts/marytts/archive/master.tar.gz marytts.tar.gz
+ADD https://github.com/marytts/marytts/archive/135815000fb8f29da9bdf391948a21646d12442a.tar.gz \
+    marytts.tar.gz
 
 RUN tar -xzf marytts.tar.gz --strip-components 1
 RUN ./gradlew installDist --parallel

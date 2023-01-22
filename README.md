@@ -8,7 +8,8 @@ Docker must be installed.
 
 Run
 
-    docker build -t marytts-hsb-dsb .
+    docker buildx build -t marytts/marytts-dsb-hsb . \
+        --platform linux/arm64/v8,linux/amd64 --push
 
 ## Running the container
 

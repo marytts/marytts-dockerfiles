@@ -20,8 +20,8 @@ RUN export DEBIAN_FRONTEND=noninteractive \
       -exec unzip {} \; \
       -delete
 
-ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-dsb/0.1.0/marytts-lexicon-dsb-0.1.0.jar lib/
-ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-dsb/0.1.0/marytts-lang-dsb-0.1.0.jar lib/
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-dsb/0.1.1/marytts-lexicon-dsb-0.1.1.jar lib/
+ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-dsb/0.1.1/marytts-lang-dsb-0.1.1.jar lib/
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-hsb/0.1.0/marytts-lexicon-hsb-0.1.0.jar lib/
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-hsb/0.1.0/marytts-lang-hsb-0.1.0.jar lib/
 ADD https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar lib/

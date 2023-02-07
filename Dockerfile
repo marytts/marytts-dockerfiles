@@ -8,7 +8,7 @@ RUN tar -xzf marytts.tar.gz --strip-components 1
 RUN ./gradlew installDist --parallel
 
 WORKDIR /work/marytts/build/install/marytts
-ADD https://github.com/marytts/voice-serbski-institut-dsb-juro/releases/download/v0.1.0-beta1/voice-serbski-institut-dsb-juro-0.1.0-beta1-legacy.zip \
+ADD https://github.com/marytts/voice-serbski-institut-dsb-juro/releases/download/v0.1.0-beta2/voice-serbski-institut-dsb-juro-0.1.0-beta2-legacy.zip \
     download/
 ADD https://github.com/marytts/voice-serbski-institut-hsb-matej/releases/download/v0.1.0-beta1/voice-serbski-institut-hsb-matej-0.1.0-beta1-legacy.zip \
     download/

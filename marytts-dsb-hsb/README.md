@@ -1,5 +1,7 @@
 # MaryTTS Docker image for Sorbian languages
 
+[![Docker Image Version](https://img.shields.io/docker/v/marytts/marytts-dsb-hsb)](https://hub.docker.com/r/marytts/marytts-dsb-hsb)
+
 ## Prerequisites
 
 Docker must be installed.

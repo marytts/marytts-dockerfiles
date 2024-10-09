@@ -6,7 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
       unzip
 
 WORKDIR /work/marytts
-ADD https://github.com/marytts/marytts/archive/135815000fb8f29da9bdf391948a21646d12442a.tar.gz \
+ADD https://github.com/marytts/marytts/archive/1c2aaa0751b7cef8ae83216dd78b4c61232b3840.tar.gz \
     marytts.tar.gz
 
 RUN tar -xzf marytts.tar.gz --strip-components 1

@@ -38,6 +38,6 @@ COPY --from=builder /work/marytts/build/install/marytts .
 
 EXPOSE 59125/tcp
 ENV JAVA_OPTS="-Dlog4j.logger.marytts=INFO,stderr -Dsocket.addr=0.0.0.0"
-ENTRYPOINT /marytts/bin/marytts-server
+ENTRYPOINT ["/marytts/bin/marytts-server"]
 
-HEALTHCHECK CMD curl --fail http://localhost:59125/version
+HEALTHCHECK CMD ["curl", "--fail", "http://localhost:59125/version"]

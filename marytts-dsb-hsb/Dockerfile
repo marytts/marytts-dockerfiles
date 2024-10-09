@@ -1,5 +1,10 @@
 FROM eclipse-temurin:8-jdk-noble AS builder
 
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -qq update \
+    && apt-get -qq install \
+      unzip
+
 WORKDIR /work/marytts
 ADD https://github.com/marytts/marytts/archive/135815000fb8f29da9bdf391948a21646d12442a.tar.gz \
     marytts.tar.gz
@@ -12,11 +17,7 @@ ADD https://github.com/marytts/voice-serbski-institut-dsb-juro/releases/download
     download/
 ADD https://github.com/marytts/voice-serbski-institut-hsb-matej/releases/download/v0.1.0-beta1/voice-serbski-institut-hsb-matej-0.1.0-beta1-legacy.zip \
     download/
-RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -qq update \
-    && apt-get -qq install \
-      unzip \
-    && find download/ -name voice-serbski-institut-\*.zip \
+RUN find download/ -name voice-serbski-institut-\*.zip \
       -exec unzip {} \; \
       -delete
 

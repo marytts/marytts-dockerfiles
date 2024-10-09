@@ -1,4 +1,4 @@
-FROM openjdk:8-slim AS builder
+FROM eclipse-temurin:8-jdk-noble AS builder
 
 WORKDIR /work/marytts
 ADD https://github.com/marytts/marytts/archive/135815000fb8f29da9bdf391948a21646d12442a.tar.gz \
@@ -26,7 +26,7 @@ ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lexicon-hsb/0.1.0/marytt
 ADD https://repo1.maven.org/maven2/de/dfki/mary/marytts-lang-hsb/0.1.0/marytts-lang-hsb-0.1.0.jar lib/
 ADD https://repo1.maven.org/maven2/org/apache/commons/commons-csv/1.9.0/commons-csv-1.9.0.jar lib/
 
-FROM alpine
+FROM alpine:3.20
 
 RUN apk add --no-cache \
     curl \
